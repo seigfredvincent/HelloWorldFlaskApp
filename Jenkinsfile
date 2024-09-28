@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/your-repo/sample-app.git'
+                git 'https://github.com/seigfredvincent/HelloWorldFlaskApp.git'
             }
         }
         stage('Build') {
