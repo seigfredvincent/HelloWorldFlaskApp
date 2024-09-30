@@ -25,7 +25,7 @@ pipeline {
         stage('Run Tests in Docker') {
             steps {
                 // Run the pytest tests inside the Docker container
-                sh 'docker run --rm flask-app-image pytest tests/'
+                sh 'docker run --rm flask-app-image pytest app/'
             }
         }
 
