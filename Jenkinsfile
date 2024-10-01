@@ -31,10 +31,7 @@ pipeline {
 
         stage('OWASP Dependency-Check') {
             steps {
-                // Run OWASP Dependency-Check to generate a report on vulnerable dependencies
-                sh '''
-                    dependency-check --project "FlaskApp" --format "XML" --out ${DEPENDENCY_CHECK_REPORT} --scan .
-                '''
+                dependencyCheck additionalArguments: '--scan .', odcInstallation: 'OWASPDependencyCheckInstallation'
             }
         }
 
