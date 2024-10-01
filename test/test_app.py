@@ -1,5 +1,11 @@
+import os
+import sys
 import pytest
 from app import app
+
+# Add the current directory to the Python path to allow app.py imports
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 
 @pytest.fixture
 def client():
