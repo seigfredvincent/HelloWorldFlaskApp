@@ -10,6 +10,9 @@ COPY . /app
 # Install Flask and pytest
 RUN pip install Flask pytest
 
+# Set PYTHONPATH to ensure the app can be found
+ENV PYTHONPATH=/app
+
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
 
