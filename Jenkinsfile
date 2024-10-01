@@ -15,20 +15,16 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
                 // Build the Docker image from the Dockerfile
                 sh 'docker build -t flask-app-image .'
             }
         }
 
-        stage('Run Tests in Docker') {
+        stage('Test') {
             steps {
-                // Run the pytest tests inside the Docker container
-                sh 'docker run --rm flask-app-image pytest /test'
-                //sh 'docker run --rm flask-app-image'
-                //sh 'docker run -d -p 5000:5000 flask-app-image'
-                //sh 'curl http://localhost:5000'
+                sh 'docker run --rm flask-app-image pytest tests/test_app.py'
             }
         }
 
