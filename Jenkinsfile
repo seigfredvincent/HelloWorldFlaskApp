@@ -34,13 +34,14 @@ pipeline {
                 //dependencyCheck additionalArguments: '--scan .', odcInstallation: 'OWASPDependencyCheckInstallation'
                 //dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
                  // Run OWASP Dependency-Check to generate a report on vulnerable dependencies
-                sh '''
+                dependencyCheck additionalArguments: '', odcInstallation: 'OWASP-DC'
+                /**sh '''
                     /opt/dependency-check/bin/dependency-check.sh \
                     --project "FlaskApp" \
                     --format "XML" \
                     --out ${DEPENDENCY_CHECK_REPORT} \
                     --scan .
-                '''
+                '''**/
             }
         }
 
