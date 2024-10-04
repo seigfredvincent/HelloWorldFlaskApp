@@ -40,8 +40,8 @@ pipeline {
 
         stage('Code Analysis') {
             steps {
-                sh 'sonar-scanner'
-                /**
+                //sh 'sonar-scanner'
+                
                 withSonarQubeEnv('SonarQube') {  // This pulls the SonarQube server configuration
                     // Run SonarQube Scanner for static code analysis
                    sh '''
@@ -52,7 +52,7 @@ pipeline {
                         -Dsonar.dependencyCheck.reportPath=${DEPENDENCY_CHECK_REPORT} \
                         -Dsonar.host.url=$SONAR_HOST_URL \
                         -Dsonar.login=$SONAR_AUTH_TOKEN
-                    '''**/
+                    '''
                 }
             }
         }
