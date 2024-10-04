@@ -40,7 +40,12 @@ pipeline {
 
         stage('Code Analysis') {
             steps {
-                sh 'sonar-scanner'
+                //sh 'sonar-scanner'
+                withSonarQubeEnv('SonarQube') {  // 'SonarQube' is the name of your server setup in Jenkins
+                    sh '''
+                        sonar-scanner
+                    '''
+                }
             }
         }
         /**
