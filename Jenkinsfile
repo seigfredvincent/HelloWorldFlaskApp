@@ -31,19 +31,20 @@ pipeline {
 
         stage('OWASP Dependency-Check') {
             steps {
-                //dependencyCheck additionalArguments: '--scan .', odcInstallation: 'OWASPDependencyCheckInstallation'
-                //dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-                // Run OWASP Dependency-Check to generate a report on vulnerable dependencies
+                // After installing the plugin and setting up the global settings
                 dependencyCheck additionalArguments: '', odcInstallation: 'OWASP-DC'
-                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                // Run OWASP Dependency-Check to generate a report on vulnerable dependencies
+                dependencyCheckPublisher pattern: '${DEPENDENCY_CHECK_REPORT}'
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage('Code Analysis') {
             steps {
+                sh 'sonar-scanner'
+                /**
                 withSonarQubeEnv('SonarQube') {  // This pulls the SonarQube server configuration
                     // Run SonarQube Scanner for static code analysis
-                    sh '''
+                   sh '''
                         sonar-scanner \
                         -Dsonar.projectKey=FlaskApp \
                         -Dsonar.sources=. \
@@ -51,7 +52,7 @@ pipeline {
                         -Dsonar.dependencyCheck.reportPath=${DEPENDENCY_CHECK_REPORT} \
                         -Dsonar.host.url=$SONAR_HOST_URL \
                         -Dsonar.login=$SONAR_AUTH_TOKEN
-                    '''
+                    '''**/
                 }
             }
         }
