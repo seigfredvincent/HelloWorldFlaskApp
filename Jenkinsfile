@@ -44,7 +44,7 @@ pipeline {
             steps {
                 //sh 'sonar-scanner'
                 withSonarQubeEnv('SonarQube') {
-                    sh 'sonar-scanner'
+                    sh '/opt/sonar-scanner/bin/sonar-scanner'
                 }
                 /**withSonarQubeEnv('SonarQube') {  // 'SonarQube' is the name of your server setup in Jenkins
                     sh '''
