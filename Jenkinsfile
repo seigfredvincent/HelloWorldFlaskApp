@@ -40,20 +40,7 @@ pipeline {
 
         stage('Code Analysis') {
             steps {
-                //sh 'sonar-scanner'
-                
-                withSonarQubeEnv('SonarQube') {  // This pulls the SonarQube server configuration
-                    // Run SonarQube Scanner for static code analysis
-                   sh '''
-                        sonar-scanner \
-                        -Dsonar.projectKey=FlaskApp \
-                        -Dsonar.sources=. \
-                        -Dsonar.python.version=3.x \
-                        -Dsonar.dependencyCheck.reportPath=${DEPENDENCY_CHECK_REPORT} \
-                        -Dsonar.host.url=$SONAR_HOST_URL \
-                        -Dsonar.login=$SONAR_AUTH_TOKEN
-                    '''
-                }
+                sh 'sonar-scanner'
             }
         }
         /**
