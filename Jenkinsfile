@@ -34,7 +34,7 @@ pipeline {
                 // After installing the plugin and setting up the global settings
                 dependencyCheck additionalArguments: '', odcInstallation: 'OWASP-DC'
                 // Run OWASP Dependency-Check to generate a report on vulnerable dependencies
-                dependencyCheckPublisher pattern: '''${DEPENDENCY_CHECK_REPORT}'''
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
 
