@@ -5,6 +5,8 @@ pipeline {
         // Set environment variables for SonarQube and Dependency-Check
         DEPENDENCY_CHECK_REPORT = 'dependency-check-report.xml'
         SONARQUBE_SERVER = 'SonarQube'  // SonarQube server configured in Jenkins
+        SONAR_HOST_URL = 'http://localhost:9000'
+        SONAR_AUTH_TOKEN = 'sqa_99b3956cad1620d4d1823b52f85fd63e3e79db18'
     }
 
     stages {
@@ -43,7 +45,13 @@ pipeline {
                 //sh 'sonar-scanner'
                 withSonarQubeEnv('SonarQube') {  // 'SonarQube' is the name of your server setup in Jenkins
                     sh '''
-                        sonar-scanner
+                        sonar-scanner \
+                        -Dsonar.projectKey=FlaskApp \
+                        -Dsonar.sources=. \
+                        -Dsonar.python.version=3.x \
+                        -Dsonar.dependencyCheck.reportPath=${DEPENDENCY_CHECK_REPORT} \
+                        -Dsonar.host.url=$SONAR_HOST_URL \
+                        -Dsonar.login=$SONAR_AUTH_TOKEN
                     '''
                 }
             }
