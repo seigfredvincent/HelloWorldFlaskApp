@@ -49,9 +49,9 @@ pipeline {
                         -Dsonar.projectKey=FlaskApp \
                         -Dsonar.sources=. \
                         -Dsonar.python.version=3.x \
-                        -Dsonar.dependencyCheck.reportPath=${DEPENDENCY_CHECK_REPORT} \
-                        -Dsonar.host.url=$SONAR_HOST_URL \
-                        -Dsonar.login=$SONAR_AUTH_TOKEN
+                        -Dsonar.dependencyCheck.reportPath=dependency-check-report.xml \
+                        -Dsonar.host.url=http://localhost:9000 \
+                        -Dsonar.login=sqa_99b3956cad1620d4d1823b52f85fd63e3e79db18
                     '''
                 }
             }
