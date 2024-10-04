@@ -42,8 +42,8 @@ pipeline {
 
         stage('Code Analysis') {
             steps {
-                //sh 'sonar-scanner'
-                withSonarQubeEnv('SonarQube') {  // 'SonarQube' is the name of your server setup in Jenkins
+                sh 'sonar-scanner'
+                /**withSonarQubeEnv('SonarQube') {  // 'SonarQube' is the name of your server setup in Jenkins
                     sh '''
                         sonar-scanner \
                         -Dsonar.projectKey=FlaskApp \
@@ -53,7 +53,7 @@ pipeline {
                         -Dsonar.host.url=http://localhost:9000 \
                         -Dsonar.login=sqa_99b3956cad1620d4d1823b52f85fd63e3e79db18
                     '''
-                }
+                }**/
             }
         }
         /**
