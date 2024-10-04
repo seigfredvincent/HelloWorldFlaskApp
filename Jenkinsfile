@@ -42,10 +42,6 @@ pipeline {
 
         stage('Code Analysis') {
             steps {
-                /**sh 'sonar-scanner'
-                withSonarQubeEnv('SonarQube') {
-                    sh '/opt/sonar-scanner/bin/sonar-scanner'
-                }**/
                 withSonarQubeEnv('SonarQube') {  // 'SonarQube' is the name of your server setup in Jenkins
                     sh '''
                         /opt/sonar-scanner/bin/sonar-scanner \
@@ -59,16 +55,6 @@ pipeline {
                 }
             }
         }
-        /**
-        stage('Security Scan') {
-            steps {
-                // Optionally, run Python dependency and security checks
-                sh 'pip install safety bandit'
-                sh 'safety check'
-                sh 'bandit -r .'
-            }
-        }
-        **/
     }
 
     post {
