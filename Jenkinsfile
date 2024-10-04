@@ -50,7 +50,7 @@ pipeline {
                         -Dsonar.python.version=3.x \
                         -Dsonar.dependencyCheck.reportPath=dependency-check-report.xml \
                         -Dsonar.host.url=http://localhost:9000 \
-                        -Dsonar.login=sqp_72cb6aad091172562c27c780e0985c497c577ca4
+                        -Dsonar.login=sqa_2c9ef11b16902ee6e2aaeafc0bd4a45dee695675
                     '''
                 }
             }
